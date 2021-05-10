@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greet-server
+spec:
+  selector:
+    matchLabels:
+      app: greet-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: greet-server
+    spec:
+      containers:
+      - name: greet-server
+        image: kdsumit04/greet-server:latest
+        ports:
+        - containerPort: 80
