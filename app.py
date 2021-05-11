@@ -1,29 +1,28 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]
-
-
 from flask import Flask
 import logging
 
+app = Flask(__name__)
+
+#below 3 lines are used to remove a unwanted info which
+#was also getting printed
+app.logger.disabled = True
+log = logging.getLogger('werkzeug')
+log.disabled = True
 logging.basicConfig(
     level=logging.INFO,
-    format="%(levelname)s %(asctime)s ",
+    format="%(levelname)s %(asctime)s - %(message)s",
     handlers=[
         logging.StreamHandler()
     ]
 )
-app = Flask(__name__)
 @app.route("/greeting/<name>")
 def greeting(name):
-        return "Hello " + name 
+    logging.info("Greet-Server is Started")
+    return "Hello " + name 
 
 if __name__ == "__main__":
-    app.run(host ='0.0.0.0',port=80)
+    app.run(host ='0.0.0.0',port='80')
 
-
-# In[ ]:
 
 
 
