@@ -1,10 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[ ]
 
 
 from flask import Flask
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(levelname)s %(asctime)s ",
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 app = Flask(__name__)
 @app.route("/greeting/<name>")
 def greeting(name):
